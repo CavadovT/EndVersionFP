@@ -1,0 +1,57 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Web.ApiGateway.Interfaces;
+using Web.ApiGateway.Models.Basket;
+
+namespace Web.ApiGateway.Controllers
+{
+    [Route("[controller]")]
+    [ApiController]
+    [Authorize]
+    public class BasketController : ControllerBase
+    {
+        private readonly ICatalogService catalogService;
+        private readonly IBasketService basketService;
+        public BasketController(ICatalogService catalogService, IBasketService basketService)
+        {
+            this.catalogService = catalogService;
+            this.basketService = basketService;
+        }
+
+        [HttpPost]
+        [Route("items")]
+        public async Task<ActionResult> AddBasketItemAsync([FromBody] AddBasketItemRequest request)
+        {
+            if (request is null || request.Quantity == 0)
+            {
+                return BadRequest("Invalid Payload");
+            }
+            var item = await catalogService.GetCatalogItemAsync(request.CatalogItemId);
+
+            var currentBasket = await basketService.GetById(request.BasketId);
+
+            var product = currentBasket.Items.SingleOrDefault(i => i.ProductId == item.Id);
+
+            if (product != null)
+            {
+                product.Quantity += request.Quantity;
+            }
+            else
+            {
+                currentBasket.Items.Add(new BasketDataItem()
+                {
+                    UnitPrice = item.Price,
+                    PictureUrl = item.PictureUrl,
+                    ProductId = item.Id,
+                    Quantity = request.Quantity,
+                    Id = Guid.NewGuid().ToString(),
+                    ProductName = item.Name,
+                });
+            }
+
+            await basketService.UpdateAsync(currentBasket);
+
+            return Ok();
+        }
+    }
+}

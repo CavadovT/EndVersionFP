@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>e6fd6c76-3020-4ed1-84e0-e4fcf869c4e4</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..\..</DockerfileContext>
+		<DockerComposeProjectPath>..\..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Consul" Version="1.6.10.7" />
+		<PackageReference Include="DiscoveryConsulExtensions" Version="1.0.0.11" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.10" />
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.23.1" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+		<PackageReference Include="Polly" Version="7.2.3" />
+		<PackageReference Include="Serilog" Version="2.12.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+		<PackageReference Include="Serilog.Sinks.Graylog" Version="2.3.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus.Base\EventBus.Base.csproj" />
+		<ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus.Factory\EventBus.Factory.csproj" />
+		<ProjectReference Include="..\OrderService.Application\OrderService.Application.csproj" />
+		<ProjectReference Include="..\OrderService.Domain\OrderService.Domain.csproj" />
+		<ProjectReference Include="..\OrderService.Infrastructure\OrderService.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Extensions\Registration\ServiceDiscovery\" />
+	</ItemGroup>
+
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties configurations_4serilog_1development_1json__JsonSchema="https://blockprotocol.org/schemas/block-metadata.json" />
+		</VisualStudio>
+	</ProjectExtensions>
+
+</Project>

@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "NotificationService": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5005"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
