@@ -59,7 +59,7 @@ services:
 
   s_redis:
     container_name: c_redis
-    image: redis
+    image: redis/redis-stack-server:latest
 
   s_rabbitmq:
     container_name: c_rabbitmq

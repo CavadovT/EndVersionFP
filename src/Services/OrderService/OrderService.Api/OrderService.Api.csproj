@@ -11,6 +11,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Extensions\Registration\ServiceDiscovery\**" />
+	  <Content Remove="Extensions\Registration\ServiceDiscovery\**" />
+	  <EmbeddedResource Remove="Extensions\Registration\ServiceDiscovery\**" />
+	  <None Remove="Extensions\Registration\ServiceDiscovery\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Consul" Version="1.6.10.7" />
 		<PackageReference Include="DiscoveryConsulExtensions" Version="1.0.0.11" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
@@ -33,10 +40,6 @@
 		<ProjectReference Include="..\OrderService.Application\OrderService.Application.csproj" />
 		<ProjectReference Include="..\OrderService.Domain\OrderService.Domain.csproj" />
 		<ProjectReference Include="..\OrderService.Infrastructure\OrderService.Infrastructure.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Extensions\Registration\ServiceDiscovery\" />
 	</ItemGroup>
 
 	<ProjectExtensions>

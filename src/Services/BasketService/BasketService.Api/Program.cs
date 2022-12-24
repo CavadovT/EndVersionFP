@@ -66,7 +66,11 @@ builder.Services.ConfigureAuth(builder.Configuration);
 builder.Services.AddSingleton(sp => sp.ConfigureRedis(builder.Configuration));
 //builder.Services.ConfigureConsul(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddLogging(configure => { configure.AddConsole(); configure.SetMinimumLevel(LogLevel.Debug); });
+builder.Services.AddLogging(configure => 
+{
+    configure.AddConsole(); 
+    configure.SetMinimumLevel(LogLevel.Information); 
+});
 
 builder.Services.AddTransient<IBasketRepository, BasketRepository>();
 builder.Services.AddTransient<IIdentityService, IdentityService>();

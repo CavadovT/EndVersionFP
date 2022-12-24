@@ -182,6 +182,7 @@ services:
   s_redis:
     ports:
       - 6379:6379
+      - 8001:8001
     volumes:
       - /opt/app_data/redis/:/data
     networks:
