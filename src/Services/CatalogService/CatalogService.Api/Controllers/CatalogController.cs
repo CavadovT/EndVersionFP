@@ -2,6 +2,7 @@
 using CatalogService.Api.Core.Domain;
 using CatalogService.Api.Infrastructure;
 using CatalogService.Api.Infrastructure.Context;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -252,6 +253,7 @@ namespace CatalogService.Api.Controllers
         //POST api/v1/[controller]/items
         [HttpPost]
         [Route("items")]
+        [Authorize]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult> CreateProductAsync([FromBody] CatalogItem product)
         {

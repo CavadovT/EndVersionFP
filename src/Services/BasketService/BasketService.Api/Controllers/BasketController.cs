@@ -66,6 +66,7 @@ namespace BasketService.Api.Controllers
         [HttpPost]
         [Route("additem")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [Authorize]
         public async Task<ActionResult> AddItemToBasket([FromBody] BasketItem basketItem)
         {
             var userId = _identityService.GetUserName().ToString()??"Tural";

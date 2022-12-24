@@ -64,7 +64,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.ConfigureAuth(builder.Configuration);
 builder.Services.AddSingleton(sp => sp.ConfigureRedis(builder.Configuration));
-builder.Services.ConfigureConsul(builder.Configuration);
+//builder.Services.ConfigureConsul(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddLogging(configure => { configure.AddConsole(); configure.SetMinimumLevel(LogLevel.Debug); });
 
@@ -117,7 +117,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-app.RegisterWithConsul(app.Lifetime, app.Configuration);
+//app.RegisterWithConsul(app.Lifetime, app.Configuration);
 
 
 IEventBus eventBus = app.Services.GetRequiredService<IEventBus>();
